@@ -19,9 +19,9 @@ st.write(model_options)
 with st.form("model_form"):
     model_name=st.text_input("Model Name", value="")
     submitted_model = st.form_submit_button("Submit")
-    if submitted_model:
-        model=zoo.load_model(model_name)
-        st.write("Model loaded successfully")
+if submitted_model:
+    model=zoo.load_model(model_name)
+    st.write("Model loaded successfully")
 
 with st.form("my_form"):
     uploaded_file=st.file_uploader('input image')
