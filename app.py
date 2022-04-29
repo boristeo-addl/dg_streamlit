@@ -13,6 +13,8 @@ runtime_agent=st.radio("Choose runtime agent",("TFLite","N2X","Don't Care"),inde
 precision=precision if precision!="Don't Care" else ""
 runtime_agent=runtime_agent if runtime_agent!="Don't Care" else "" 
 model_options=zoo.list_models(device='CPU',precision=precision,runtime=runtime_agent)
+st.header('Choose and Run a Model')
+st.text('Select a model and upload an image. Then click on the submit button')
 with st.form("model_form"):
     model_name=st.selectbox("Choose a Model from the list", model_options)
     uploaded_file=st.file_uploader('input image')
