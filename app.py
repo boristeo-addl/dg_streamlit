@@ -3,7 +3,7 @@ import degirum as dg
 from PIL import Image
 
 zoo=dg.connect_model_zoo()
-model=zoo.load_model('mobilenet_v2_ssd_coco--300x300_quant_n2x_cpu_1')
+model=None#zoo.load_model('mobilenet_v2_ssd_coco--300x300_quant_n2x_cpu_1')
 hw_option = st.radio("Choose target HW", ("ORCA", 'CPU', "EDGETPU", "Don't care"))
 precision=st.radio("Choose model precision",("Float","Quant","Don't Care"))
 runtime_agent=st.radio("Choose runtime agent",("TFLite","N2X","Don't Care"))
