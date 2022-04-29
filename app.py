@@ -17,7 +17,7 @@ model_options=zoo.list_models(device=hw_option,precision=precision,runtime=runti
 st.write('List of supported models')
 st.write(model_options)
 with st.form("model_form"):
-    model_name=st.text_input("Model Name", value="")
+    model_name=st.selectbox("Model Name", model_options)
     uploaded_file=st.file_uploader('input image')
     submitted = st.form_submit_button("Submit")
     if submitted:
