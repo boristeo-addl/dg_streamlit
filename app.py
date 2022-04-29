@@ -30,7 +30,7 @@ with st.form("model_form"):
         predictions=model(image)
         if model.output_postprocess_type=='Classification' or model.output_postprocess_type=='DetectionYoloPlates':
             st.image(predictions.image,caption='Original Image')
-            st.write(predictions)
+            st.write(predictions.results)
         else:
             st.image(predictions.image_overlay,caption='Image with Bounding Boxes/Keypoints')
             
