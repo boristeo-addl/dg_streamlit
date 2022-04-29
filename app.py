@@ -8,8 +8,8 @@ zoo=dg.connect_model_zoo(zoo_url=degirum_public_zoo,token=st.secrets["GH_TOKEN"]
 st.title('DeGirum Public Model Zoo Demo for CPU')
 
 st.header('Specify Model Options Below')
-precision=st.radio("Choose model precision",("Float","Quant","Don't Care"))
-runtime_agent=st.radio("Choose runtime agent",("TFLite","N2X","Don't Care"))
+precision=st.radio("Choose model precision",("Float","Quant","Don't Care"),index=2)
+runtime_agent=st.radio("Choose runtime agent",("TFLite","N2X","Don't Care"),index=2)
 precision=precision if precision!="Don't Care" else ""
 runtime_agent=runtime_agent if runtime_agent!="Don't Care" else "" 
 model_options=zoo.list_models(device='CPU',precision=precision,runtime=runtime_agent)
