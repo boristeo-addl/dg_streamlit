@@ -2,7 +2,7 @@ import streamlit as st
 import degirum as dg
 from PIL import Image
 
-zoo=dg.connect_model_zoo()
+zoo=dg.connect_model_zoo(token=st.secrets["GH_TOKEN"])
 model=None#zoo.load_model('mobilenet_v2_ssd_coco--300x300_quant_n2x_cpu_1')
 hw_option = st.radio("Choose target HW", ("ORCA", 'CPU', "EDGETPU", "Don't care"))
 precision=st.radio("Choose model precision",("Float","Quant","Don't Care"))
