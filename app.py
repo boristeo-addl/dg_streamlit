@@ -21,7 +21,16 @@ with st.form("model_form"):
     submitted = st.form_submit_button("Submit")
     if submitted:
         model=zoo.load_model(model_name)
+        model.overlay_font_scale=3
+        model.overlay_line_width=6
+        if model.output_postprocess_type=='PoseDetection':
+            model.overlay_show_labels=False
         st.write("Model loaded successfully")
         image = Image.open(uploaded_file)
         predictions=model(image)
-        st.image(predictions.image_overlay,caption='bounding boxes')
+        if model.output_postprocess_type=='Classification' or model.output_postprocess_type=='DetectionYoloPlates':
+            st.image(predictions.image,caption='Original Image')
+            st.write(predictions)
+        else:
+            st.image(predictions.image_overlay,caption='Image with Bounding Boxes/Keypoints')
+            
