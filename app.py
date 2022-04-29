@@ -4,21 +4,17 @@ from PIL import Image
 
 degirum_public_zoo="https://api.github.com/repos/degirum/public_model_zoo/releases/latest"
 zoo=dg.connect_model_zoo(zoo_url=degirum_public_zoo,token=st.secrets["GH_TOKEN"])
-model=None#zoo.load_model('mobilenet_v2_ssd_coco--300x300_quant_n2x_cpu_1')
-hw_option = st.radio("Choose target HW", ("ORCA", 'CPU', "EDGETPU", "Don't care"))
+
+st.title('DeGirum Public Model Zoo Demo for CPU')
+
+st.header('Specify Model Options Below')
 precision=st.radio("Choose model precision",("Float","Quant","Don't Care"))
 runtime_agent=st.radio("Choose runtime agent",("TFLite","N2X","Don't Care"))
-pruned=st.radio("Choose model density",("Dense","Pruned","Don't Care"))
-
-hw_option=hw_option if hw_option!="Don't Care" else "" 
 precision=precision if precision!="Don't Care" else ""
-pruned=pruned if pruned!="Don't Care" else ""
 runtime_agent=runtime_agent if runtime_agent!="Don't Care" else "" 
-model_options=zoo.list_models(device=hw_option,precision=precision,runtime=runtime_agent,pruned=pruned)
-st.write('List of supported models')
-st.write(model_options)
+model_options=zoo.list_models(device='CPU',precision=precision,runtime=runtime_agent)
 with st.form("model_form"):
-    model_name=st.selectbox("Model Name", model_options)
+    model_name=st.selectbox("Choose a Model from the list", model_options)
     uploaded_file=st.file_uploader('input image')
     submitted = st.form_submit_button("Submit")
     if submitted:
