@@ -1,2 +1,2 @@
 --extra-index-url https://degirum.github.io/simple
-degirum==0.2.0
+degirum==0.5.0
