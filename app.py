@@ -2,11 +2,9 @@ import streamlit as st
 import degirum as dg
 from PIL import Image
 
-degirum_public_zoo="https://api.github.com/repos/degirum/public_model_zoo/releases/latest"
-zoo=dg.connect_model_zoo(zoo_url=degirum_public_zoo,token=st.secrets["GH_TOKEN"])
+zoo=dg.connect_model_zoo(zoo_url='dgcps://cs.degirum.com',token=st.secrets["DG_TOKEN"])
 
-st.title('DeGirum Public Model Zoo Demo for CPU')
-
+st.title('DeGirum Cloud Platform Demo')
 st.header('Specify Model Options Below')
 precision=st.radio("Choose model precision",("Float","Quant","Don't Care"),index=2)
 runtime_agent=st.radio("Choose runtime agent",("TFLite","N2X","Don't Care"),index=2)
