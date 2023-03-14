@@ -2,7 +2,7 @@ import streamlit as st
 import degirum as dg
 from PIL import Image
 
-zoo=dg.connect_model_zoo('https://cs.degirum.com/degirum_com/yolov5',token=st.secrets["DG_TOKEN"])
+zoo=dg.connect_model_zoo('https://cs.degirum.com/degirum_com/public',token=st.secrets["DG_TOKEN"])
  
 st.title('DeGirum Cloud Platform Demo of YOLOv5 Models')
 st.header('Specify Model Options Below')
