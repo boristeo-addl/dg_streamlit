@@ -2,15 +2,11 @@ import streamlit as st
 import degirum as dg
 from PIL import Image
 
-zoo=dg.connect_model_zoo(zoo_url='dgcps://cs.degirum.com',token=st.secrets["DG_TOKEN"])
-
-st.title('DeGirum Cloud Platform Demo')
+zoo=dg.connect_model_zoo('https://cs.degirum.com/degirum_com/yolov5',token=st.secrets["DG_TOKEN"])
+ 
+st.title('DeGirum Cloud Platform Demo of YOLOv5 Models')
 st.header('Specify Model Options Below')
-precision=st.radio("Choose model precision",("Float","Quant","Don't Care"),index=2)
-runtime_agent=st.radio("Choose runtime agent",("TFLite","N2X","Don't Care"),index=2)
-precision=precision if precision!="Don't Care" else ""
-runtime_agent=runtime_agent if runtime_agent!="Don't Care" else "" 
-model_options=zoo.list_models(device='ORCA',precision=precision,runtime=runtime_agent)
+model_options=zoo.list_models()
 st.header('Choose and Run a Model')
 st.text('Select a model and upload an image. Then click on the submit button')
 with st.form("model_form"):
@@ -21,14 +17,8 @@ with st.form("model_form"):
         model=zoo.load_model(model_name)
         model.overlay_font_scale=3
         model.overlay_line_width=6
-        if model.output_postprocess_type=='PoseDetection':
-            model.overlay_show_labels=False
         st.write("Model loaded successfully")
         image = Image.open(uploaded_file)
         predictions=model(image)
-        if model.output_postprocess_type=='Classification' or model.output_postprocess_type=='DetectionYoloPlates':
-            st.image(predictions.image,caption='Original Image')
-            st.write(predictions.results)
-        else:
-            st.image(predictions.image_overlay,caption='Image with Bounding Boxes/Keypoints')
+        st.image(predictions.image_overlay,caption='Image with Bounding Boxes')
             
