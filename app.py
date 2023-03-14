@@ -6,7 +6,7 @@ zoo=dg.connect_model_zoo('https://cs.degirum.com/degirum_com/public',token=st.se
  
 st.title('DeGirum Cloud Platform Demo of YOLOv5 Models')
 st.header('Specify Model Options Below')
-model_options=zoo.list_models()
+model_options=zoo.list_models(model_family="yolo_v5",device="CPU",runtime="N2X")
 st.header('Choose and Run a Model')
 st.text('Select a model and upload an image. Then click on the submit button')
 with st.form("model_form"):
