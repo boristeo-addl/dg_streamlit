@@ -5,7 +5,7 @@ from PIL import Image
 zoo=dg.connect_model_zoo('https://cs.degirum.com/degirum_com/yolov5_cpu_nota',token=st.secrets["DG_TOKEN"])
  
 st.title('DeGirum Cloud Platform Demo of YOLOv5 Models')
-model_options=zoo.list_models(model_family="yolo_v5",device="CPU",runtime="N2X")
+model_options=zoo.list_models(model_family="yolov5",device="CPU",runtime="N2X")
 st.header('Choose and Run a Model')
 st.text('Select a model and upload an image. Then click on the submit button')
 with st.form("model_form"):
