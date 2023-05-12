@@ -2,7 +2,7 @@ import streamlit as st
 import degirum as dg
 from PIL import Image
 
-zoo=dg.connect('https://cs.degirum.com/degirum_com/public',token=st.secrets["DG_TOKEN"])
+zoo=dg.connect(dg.CLOUD, 'https://cs.degirum.com/degirum_com/public',token=st.secrets["DG_TOKEN"])
 lp_det_model = zoo.load_model("yolo_v5s_lp_det--512x512_quant_n2x_orca_1")
 ocr_model = zoo.load_model("yolo_v5s_lp_ocr--256x256_quant_n2x_orca_1")
 
