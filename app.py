@@ -18,10 +18,10 @@ ocr_model.output_top_k = 1
 st.title('Demo of License Plate Recognition using the DeGirum Cloud Platform')
 st.text('Upload an image. Then click on the submit button')
 with st.form("model_form"):
-    uploaded_file=st.file_uploader('input image')
+    uploaded_file=Image.open(st.file_uploader('input image'))
     submitted = st.form_submit_button("Submit")
     if submitted:
-        license_plates = lp_det_model(uploaded_file.read())
+        license_plates = lp_det_model(uploaded_file)
         with ocr_model: # performance optimization to keep connection to mask_det_model open
             for lp in license_plates.results:
                 lp_box = lp.image.crop(face['bbox'])
