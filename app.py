@@ -24,7 +24,7 @@ with st.form("model_form"):
         license_plates = lp_det_model(Image.open(uploaded_file))
         with ocr_model: # performance optimization to keep connection to mask_det_model open
             for lp in license_plates.results:
-                lp_box = lp.image.crop(face['bbox'])
+                lp_box = license_plates.image.crop(lp['bbox'])
                 digits = ocr_model(lp_box)
                 lp["label"] = digits.results[0]["label"]
         st.image(license_plates.image_overlay,caption='Image with License Plate Information')
