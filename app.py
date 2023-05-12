@@ -21,7 +21,7 @@ with st.form("model_form"):
     uploaded_file=st.file_uploader('input image')
     submitted = st.form_submit_button("Submit")
     if submitted:
-        license_plates = lp_det_model(uploaded_file)
+        license_plates = lp_det_model(uploaded_file.read())
         with ocr_model: # performance optimization to keep connection to mask_det_model open
             for lp in license_plates.results:
                 lp_box = lp.image.crop(face['bbox'])
